@@ -1,0 +1,232 @@
+<link rel="stylesheet" href="{tmp.efm_plugin_url}style.css?v={tmp.efm_plugin_version}" type="text/css" />
+<style type="text/css">
+.efm-color-picker {
+	padding: 0 3px;
+	margin: 0;
+	height: 30px;
+	width: 90px;
+	cursor: pointer;
+	border: 1px solid #91765d;
+	background: #eee;
+}
+#widget_width,
+#widget_height {
+	width: 70px !important;
+	border: 1px #BDBDBD solid;
+	transition: border-color .3s;
+	-o-transition: border-color .3s;
+	-ms-transition: border-color .3s;
+	-moz-transition: border-color .3s;
+	-webkit-transition: border-color .3s;
+}
+#widget_width:hover,
+#widget_height:hover {
+	background: #f0fff0;
+	border-color: #7DC27D;
+}
+.btn-restore-default {
+	display: inline-block;
+	text-decoration: underline;
+	color: #00F;
+	margin-left: 15px;
+	cursor: pointer;
+}
+.efm-exemple-relative { position: relative; }
+.efm-exemple-box {
+	position: absolute;
+	background: #fff;
+	border: 1px #ccc solid;
+	top: 250px;
+	right: 6%;
+	width: 40%;
+	min-width: 250px;
+	height: 40%;
+	min-height: 250px;
+	z-index: 9;
+	color: #999;
+	padding: 10px;
+	display: none;
+}
+.option-time-out {
+	padding-left: 25px;
+	font-size: 12px;
+	display: none;
+}
+.selected-time-show { width: 70px !important; }
+.set-time-out label {
+	display: inline-block;
+	width: 110px;
+	font-weight: bold;
+	color: #666;
+}
+</style>
+<div class="efm-exemple-relative">
+	<div class="efm-exemple-box">Exemple box</div>
+	<div class="wrap">
+		<h1>Setting Facebook Messenger Box</h1>
+		<p>* Note: Default values will be used if custom values are not set.</p>
+		<form name="echbay_config_for_efm" id="echbay_config_for_efm" method="post" action="" class="validate">
+			<input type="hidden" id="license" name="_efm_license" value="{tmp.license}" />
+			<input type="hidden" id="hide_powered" name="_efm_hide_powered" value="{tmp.hide_powered}" />
+			<input type="hidden" id="_ebnonce" name="_ebnonce" value="{tmp._ebnonce}" />
+			<table class="form-table">
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="fb_link">Facebook Page / Profile URL</label></th>
+					<td><input name="_efm_fb_link" id="fb_link" type="text" value="{tmp.fb_link}" placeholder="{aaa.fb_link}" />
+						<p class="description">The URL of Facebook Page / Profile you want your visitors to send messages to.</p></td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="widget_title">Header Title</label></th>
+					<td><input name="_efm_widget_title" id="widget_title" type="text" value="{tmp.widget_title}" placeholder="{aaa.widget_title}" /></td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="header_bg">Header Background Color</label></th>
+					<td><input type="color" name="_efm_header_bg" id="header_bg" value="{tmp.header_bg}" placeholder="{aaa.header_bg}" class="efm-color-picker" />
+						<span data-set="header_bg" class="btn-restore-default">Default</span></td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="header_text">Header Text Color</label></th>
+					<td><input type="color" name="_efm_header_text" id="header_text" value="{tmp.header_text}" placeholder="{aaa.header_text}" class="efm-color-picker" />
+						<span data-set="header_text" class="btn-restore-default">Default</span></td>
+				</tr>
+				<tr class="form-field term-slug-wrap">
+					<th scope="row"><label for="widget_width">Widget Width</label></th>
+					<td><input name="_efm_widget_width" id="widget_width" type="text" value="{tmp.widget_width}" placeholder="{aaa.widget_width}" /></td>
+				</tr>
+				<tr class="form-field term-slug-wrap">
+					<th scope="row"><label for="widget_height">Widget Height</label></th>
+					<td><input name="_efm_widget_height" id="widget_height" type="text" value="{tmp.widget_height}" placeholder="{aaa.widget_height}" /></td>
+				</tr>
+				<tr class="form-field term-parent-wrap">
+					<th scope="row"><label for="widget_position">Position</label></th>
+					<td><select name="_efm_widget_position" id="widget_position" class="postform">
+							{tmp.str_position}
+						</select></td>
+				</tr>
+				<tr class="form-field term-description-wrap">
+					<th scope="row"><label for="rectangle">Desktop widget</label></th>
+					<td><input type="radio" id="round" name="_efm_desktop_theme" value="min" {tmp.min_desktop_widget}>
+						<label for="round"><span class="efm-admin-min-exemple">&nbsp;</span></label>
+						<input type="radio" id="rectangle" name="_efm_desktop_theme" value="full" {tmp.full_desktop_widget}>
+						<label for="rectangle"><span class="efm-admin-full-exemple" style="background-color:{tmp.header_bg}"><span>{tmp.widget_title}</span></span></label>
+						<p class="description">Select your desktop widget.</p></td>
+				</tr>
+				<tr class="form-field term-description-wrap">
+					<th scope="row"><label for="mobile_rectangle">Mobile widget</label></th>
+					<td><input type="radio" id="mobile_round" name="_efm_mobile_theme" value="min" {tmp.min_mobile_widget}>
+						<label for="mobile_round"><span class="efm-admin-min-exemple">&nbsp;</span></label>
+						<input type="radio" id="mobile_rectangle" name="_efm_mobile_theme" value="full" {tmp.full_mobile_widget}>
+						<label for="mobile_rectangle"><span class="efm-mobile-full-exemple" style="background-color:{tmp.header_bg}"><span>Chat</span></span></label>
+						<p class="description">Select your mobile widget.</p></td>
+				</tr>
+				<!--
+				<tr class="form-field term-description-wrap">
+					<th scope="row"><label for="show_bubble">Show Bubble</label></th>
+					<td><input type="checkbox" id="show_bubble" name="_efm_show_bubble" value="no" {tmp.check_show_bubble}></td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="bubble_bg_colors">Bubble Colors</label></th>
+					<td><input type="color" name="_efm_bubble_bg_colors" id="bubble_bg_colors" value="{tmp.bubble_bg_colors}" placeholder="{aaa.bubble_bg_colors}" class="efm-color-picker" />
+						&nbsp;
+						<input type="color" name="_efm_bubble_colors" id="bubble_colors" value="{tmp.bubble_colors}" placeholder="{aaa.bubble_colors}" class="efm-color-picker" /></td>
+				</tr>
+				<tr class="form-field term-slug-wrap">
+					<th scope="row"><label for="bubble_content">Bubble Content</label></th>
+					<td><input name="_efm_bubble_content" id="bubble_content" type="text" value="{tmp.bubble_content}" placeholder="{aaa.bubble_content}" /></td>
+				</tr>
+				-->
+				<tr class="form-field term-description-wrap">
+					<th scope="row"><label for="custom_style">Description</label></th>
+					<td><textarea name="_efm_custom_style" id="custom_style" rows="5" cols="50" placeholder="{aaa.custom_style}" class="large-text">{tmp.custom_style}</textarea>
+						<p class="description">The custom style for development.</p></td>
+				</tr>
+				<tr class="form-field term-parent-wrap">
+					<th scope="row"><label for="time_show">Hours</label></th>
+					<td><input type="radio" id="time_show" name="_efm_time_show" value="box" {tmp.box_time_show}>
+						<label for="time_show">Show box chat only</label>
+						<br>
+						<input type="radio" id="select_time_show" name="_efm_time_show" value="time" {tmp.time_time_show}>
+						<label for="select_time_show">Show on selected hours</label>
+						<div class="option-time-out">
+							<ul class="set-time-out">
+								<li>
+									<label for="mon_time_am">Monday</label>
+									<input type="text" name="_efm_mon_time_am" id="mon_time_am" value="{tmp.mon_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_mon_time_pm" value="{aaa.mon_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="tue_time_am">Tuesday</label>
+									<input type="text" name="_efm_tue_time_am" id="tue_time_am" value="{tmp.tue_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_tue_time_pm" value="{aaa.tue_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="wed_time_am">Wednesday</label>
+									<input type="text" name="_efm_wed_time_am" id="wed_time_am" value="{tmp.wed_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_wed_time_pm" value="{aaa.wed_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="thu_time_am">Thursday</label>
+									<input type="text" name="_efm_thu_time_am" id="thu_time_am" value="{tmp.thu_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_thu_time_pm" value="{aaa.thu_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="fri_time_am">Friday</label>
+									<input type="text" name="_efm_fri_time_am" id="fri_time_am" value="{tmp.fri_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_fri_time_pm" value="{aaa.fri_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="sat_time_am">Saturday</label>
+									<input type="text" name="_efm_sat_time_am" id="sat_time_am" value="{tmp.sat_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_sat_time_pm" value="{aaa.sat_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="sun_time_am">Sunday</label>
+									<input type="text" name="_efm_sun_time_am" id="sun_time_am" value="{tmp.sun_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_sun_time_pm" value="{aaa.sun_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+							</ul>
+							<strong>After time out</strong>:<br>
+							<input type="radio" id="time_out_show" name="_efm_time_out" value="show" {tmp.show_time_out}>
+							<label for="time_out_show">Show contact form</label>
+							<br>
+							<input type="radio" id="time_out_hide" name="_efm_time_out" value="hide" {tmp.hide_time_out}>
+							<label for="time_out_hide">Hide plugin</label>
+						</div>
+						<br>
+						<input type="radio" id="contact_time_show" name="_efm_time_show" value="form" {tmp.form_time_show}>
+						<label for="contact_time_show">Show contact form only</label></td>
+				</tr>
+			</table>
+			<p class="submit">
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes" />
+			</p>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+jQuery('.btn-restore-default').click(function () {
+	var a = jQuery(this).attr('data-set') || '';
+//	console.log(a);
+	
+	var b = 'input[id="' + a + '"]';
+	
+	jQuery(b).val( jQuery(b).attr('placeholder') || '' );
+});
+
+
+jQuery('input[name="_efm_time_show"]').change(function () {
+//	console.log( jQuery(this).val() );
+	if ( jQuery(this).val() == 'time' ) {
+		jQuery('.option-time-out').fadeIn();
+	} else {
+		jQuery('.option-time-out').hide();
+	}
+});
+</script> 
